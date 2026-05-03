@@ -1,0 +1,21 @@
+import os
+
+class Config:
+    API_ID = int(os.getenv("API_ID", "35828291"))
+    API_HASH = os.getenv("API_HASH", "c025ee9d01d73b9d738d4f3e5e6137e2")
+    BOT_TOKEN = os.getenv("BOT_TOKEN", "8628227065:AAGYRzHDTCchjF3X0TPXaeQ_J_RNLATuPDc")
+    SESSION_STRING = os.getenv("SESSION_STRING", "BQIiskMANNY39qPj2BDNIyqXJTnhSHx-xKFQSQrJyRj0gi2RCX8_FOpVzh6SVNOaRw3DSINTyoPx1ScsPTDlKJ20EFG-CA606H8-ZHD-wBdvbbx11Ln1wFsOf5pkf97YVrxxaprBg2ibATvEQmm4Uc0ViBcBUdEFPbskK1IubAkXKWf7jixqWT__Kpw-ACQu5-7SOYgJCpL9qML7a_MHAaB3l6lSA5HBV_N6xk1lsDfP3ggw12D4VXMGx9xC715T0dRbJNMSmmNs5nZRblxK1Ut0uJL1xRBd5i4w8us7NNQZ9SRQjaPwQfdmrpeEkS94TE70UwnqEO9SsGi55SNqX6qTq9AjBgAAAAICSEv5AQ")
+    OWNER_ID = int(os.getenv("OWNER_ID", "7953454559"))
+    LOG_GROUP_ID = int(os.getenv("LOG_GROUP_ID", "") or -1003935682710)
+    SUPPORT_CHAT = os.getenv("SUPPORT_CHAT", "https://t.me/ajayvcmusicgroup")
+    BOT_NAME = os.getenv("BOT_NAME", "AjayVcStreamBot")
+    START_IMG = os.getenv("START_IMG", "https://i.ibb.co/3W5ZqfP/music.jpg")
+
+    @classmethod
+    def validate(cls):
+        missing = []
+        for k in ("API_ID", "API_HASH", "BOT_TOKEN", "SESSION_STRING"):
+            if not getattr(cls, k):
+                missing.append(k)
+        if missing:
+            raise SystemExit(f"Missing env vars: {', '.join(missing)}")
